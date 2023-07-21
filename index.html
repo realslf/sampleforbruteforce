@@ -1,3 +1,4 @@
+<!-- Code Fidal -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +6,7 @@
 </head>
 <body>
     <h1>Login</h1>
-    <form id="loginForm" onsubmit="return checkCredentials()">
+    <form id="loginForm">
         <label for="username">Username:</label>
         <input type="text" id="username" required>
         <br>
@@ -17,7 +18,36 @@
 
     <p id="errorMessage" style="color: red; display: none;">Invalid username or password.</p>
 
-   <script src="script.js"></script>
+    <script>
+        function checkCredentials() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    
+                    window.location.replace("home.html");
+                } else {
+                   
+                    document.getElementById("errorMessage").style.display = "block";
+                }
+            })
+            .catch(error => console.error('Error:', error));
+
+            return false; 
+        }
+
+        document.getElementById("loginForm").addEventListener("submit", checkCredentials);
+    </script>
     
 </body>
 </html>

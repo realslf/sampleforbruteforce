@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="loginForm" onsubmit="return checkCredentials()">
+        <label for="username">Username:</label>
+        <input type="text" id="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+        <br>
+        <input type="submit" value="Login">
+    </form>
+
+    <p id="errorMessage" style="color: red; display: none;">Invalid username or password.</p>
+
+   <script src="script.js"></script>
+    
+</body>
+</html>
